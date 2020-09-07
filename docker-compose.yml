@@ -1,0 +1,32 @@
+version: "3"
+
+services:
+  db:
+    container_name: mysql_for_daily_report
+    image: mysql
+    environment:
+      TZ: Asia/Tokyo
+      MYSQL_PASSWORD: password
+      MYSQL_DATABASE: daily-report
+      MYSQL_ROOT_PASSWORD: root
+    volumes:
+      - ./back/tmp/db:/var/lib/mysql
+
+  back:
+    container_name: php_daily_report
+    build: back/
+    volumes:
+      - ./back:/daily-report
+    depends_on:
+      - db
+    ports:
+      - 18080:8080
+
+  front:
+    container_name: nuxt_daily_report
+    build: front/
+    command: npm run dev
+    volumes:
+      - ./front:/daily-report
+    ports:
+      - 8080:3000

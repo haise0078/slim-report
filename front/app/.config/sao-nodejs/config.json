@@ -1,0 +1,12 @@
+{
+	"generators": {
+		"75d0108a": {
+			"type": "local",
+			"path": "/usr/local/lib/node_modules/create-nuxt-app/lib",
+			"hash": "75d0108a"
+		}
+	},
+	"answers": {
+		"75d0108a__npm__": {}
+	}
+}
