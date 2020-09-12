@@ -23,4 +23,11 @@ return function (App $app) {
         $group->get('', ListUsersAction::class);
         $group->get('/{id}', ViewUserAction::class);
     });
+
+    $app->get('/test', function (Request $request, Response $response) {
+        $data = array('message' => 'Hello I am Slim!');
+        $payload = json_encode($data);
+        $response->getBody()->write($payload);
+        return $response->withHeader('Content-Type', 'application/json');
+    });
 };
