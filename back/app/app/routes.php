@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 use App\Application\Actions\User\ListUsersAction;
 use App\Application\Actions\User\ViewUserAction;
+use App\Application\Actions\DailyReport\SubmitDailyReportAction;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use Slim\App;
@@ -24,7 +25,12 @@ return function (App $app) {
         $group->get('/{id}', ViewUserAction::class);
     });
 
+    $app->group('/daily-report', function(Group $group) {
+        $group->post('', SubmitDailyReportAction::class);
+    });
+
     $app->get('/test', function (Request $request, Response $response) {
+        $db = $this->get('db');
         $data = array('message' => 'Hello I am Slim!');
         $payload = json_encode($data);
         $response->getBody()->write($payload);
