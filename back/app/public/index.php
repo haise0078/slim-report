@@ -77,6 +77,8 @@ $container->set('db', function ($container) {
 	return $capsule;
 });
 
+$container->get('db');
+
 // Run App & Emit Response
 $response = $app->handle($request);
 $responseEmitter = new ResponseEmitter();
