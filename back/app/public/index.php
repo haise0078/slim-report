@@ -67,6 +67,16 @@ $app->addRoutingMiddleware();
 $errorMiddleware = $app->addErrorMiddleware($displayErrorDetails, false, false);
 $errorMiddleware->setDefaultErrorHandler($errorHandler);
 
+$container->set('db', function ($container) {
+	$capsule = new \Illuminate\Database\Capsule\Manager;
+	$capsule->addConnection($container->get('settings')['db']);
+
+	$capsule->setAsGlobal();
+	$capsule->bootEloquent();
+
+	return $capsule;
+});
+
 // Run App & Emit Response
 $response = $app->handle($request);
 $responseEmitter = new ResponseEmitter();
