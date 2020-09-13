@@ -18,14 +18,14 @@ final class MyNewMigration extends AbstractMigration
      */
     public function change(): void
     {
-        $table = $this->table('daily-report');
+        $table = $this->table('DailyReport');
         $table->addColumn('reportDate', 'date')
             ->addIndex('reportDate')
             ->addColumn('taskLength', 'time')
             ->addColumn('taskType', 'string', ['limit' => 20])
             ->addColumn('taskExplanation', 'string', ['limit' => 100])
-            ->addColumn('created', 'datetime')
-            ->addColumn('updated', 'datetime')
+            ->addColumn('created_at', 'datetime')
+            ->addColumn('updated_at', 'datetime')
             ->create();        
     }
 }
