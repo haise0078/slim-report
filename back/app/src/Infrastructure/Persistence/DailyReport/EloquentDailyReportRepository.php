@@ -18,4 +18,12 @@ class EloquentDailyReportRepository implements DailyReportRepository
             $dailyReport->getCreateData()
         );
     }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function findAll(): array
+    {
+        return EloquentDailyReport::select('reportDate', 'taskLength', 'taskType', 'taskExplanation')->get()->toArray();
+    }
 }

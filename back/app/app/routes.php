@@ -1,6 +1,7 @@
 <?php
 declare(strict_types=1);
 
+use App\Application\Actions\DailyReport\ListDailyReportAction;
 use App\Application\Actions\User\ListUsersAction;
 use App\Application\Actions\User\ViewUserAction;
 use App\Application\Actions\DailyReport\SubmitDailyReportAction;
@@ -27,6 +28,7 @@ return function (App $app) {
 
     $app->group('/daily-report', function(Group $group) {
         $group->post('', SubmitDailyReportAction::class);
+        $group->get('/reportLists', ListDailyReportAction::class);
     });
 
     $app->get('/test', function (Request $request, Response $response) {

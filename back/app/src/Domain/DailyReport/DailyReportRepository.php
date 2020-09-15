@@ -9,4 +9,9 @@ interface DailyReportRepository
      * @return void
      */
     public function createDailyReport(DailyReport $dailyReport): void;
+
+    /**
+     * @return array
+     */
+    public function findAll(): array;
 }
